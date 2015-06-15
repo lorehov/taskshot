@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Tasks</div>
+      <div class="panel-body">
+        <p>You can add new Task by pressing a button "Add".</p>
+        <a href="{% url 'task_add' %}" class="btn btn-primary"> + Task</a>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Task name</th>
+            <th>Placed</th>
+            <th>Assignments</th>
+            <th>Updated</th>
+            <th>Revision</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in tasks %}
+            <tr>
+              <td><a href="{% url 'task_update' t.id%}">{{ t.title }}</a></td>
+              <td>{{ t.created }}</td>
+              <td><span class="badge">counter</span></td>
+              <td>{{ t.updated }}</td>
+              <td>{{ t.revision }}</td>
+              <td>
+                <button class="btn btn-primary" type="button">+ Assignment</button>
+                <a href="{% url 'task_delete'  t.pk %}" class="btn btn-danger"> - Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
