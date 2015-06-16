@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.core.urlresolvers import reverse
 from django.db.models import Model, CharField, TextField, DateTimeField, IntegerField, ForeignKey, EmailField
 from django.contrib.auth.models import User
@@ -30,7 +28,7 @@ class Assignment(Model):
     task = ForeignKey(Task)
     email = EmailField()
     description = TextField(null=True)
-    created = DateTimeField(default=datetime.utcnow)
+    created = DateTimeField(auto_now_add=True)
     revision = IntegerField()
     taken = DateTimeField(null=True)
 

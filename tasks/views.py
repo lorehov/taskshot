@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse_lazy
 
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Assignment
+from .forms import TaskForm, AssignmentForm
 
 
 def index(request):
@@ -19,8 +19,8 @@ class _LoginRequired(object):
         return super(_LoginRequired, self).dispatch(*args, **kwargs)
 
 
-class TaskList(ListView):
-    template_name = 'tasks/list.html'
+class TaskList(_LoginRequired, ListView):
+    template_name = 'tasks/task_list.html'
     context_object_name = 'tasks'
     model = Task
 
@@ -48,3 +48,26 @@ class TaskUpdate(_LoginRequired, UpdateView):
 class TaskDelete(_LoginRequired, DeleteView):
     model = Task
     success_url = reverse_lazy('task_list')
+
+
+class AssignmentList(_LoginRequired, ListView):
+    template_name = 'tasks/assignment_list.html'
+    context_object_name = 'assignments'
+    model = Assignment
+
+
+class AssignmentCreate(_LoginRequired, CreateView):
+    model = Assignment
+    form_class = AssignmentForm
+    success_url = reverse_lazy('assignment_list')
+
+
+class AssignmentUpdate(_LoginRequired, UpdateView):
+    model = Assignment
+    form_class = AssignmentForm
+    success_url = reverse_lazy('assignment_list')
+
+
+class AssignmentDelete(_LoginRequired, DeleteView):
+    model = Assignment
+    success_url = reverse_lazy('assignment_list')
