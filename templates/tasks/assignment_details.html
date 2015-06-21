@@ -1,11 +1,19 @@
 {% extends '_base.html' %}
 
+{% block title %}Taskshot: assignment details.{% endblock %}
+
 {% block content %}
     <div class="container">
         <h1>Assignment for task {{ assignment.task.title }}</h1>
-        <h3>{{ assignment.task.foreword }}</h3>
-        <h3>You have {{ assignment.task.time_limit }} hours on this task.</h3>
-        <h4>{{ assignment.task.description }}</h4>
-        <h4><a href="{{ MEDIA_URL }}/{{ assignment.task.attachment }}">Вложение</a> </h4>
+        <p>Please read following information carefully.</p>
+        <h4>Time limit: {{ assignment.task.time_limit }}h.</h4>
+        <p>Now you have {{ assignment.task.time_limit }} hours to complete an assignment.</p>
+        <h4>Assignment foreword.</h4>
+        <p>{{ assignment.task.foreword }}</p>
+        <h4>Assignment description.</h4>
+        <p>{{ assignment.task.description }}</p>
+        {% if assignment.task.attachment %}
+            <p><a href="{{ MEDIA_URL }}/{{ assignment.task.attachment }}">Attachement</a></p>
+        {% endif %}
     </div>
 {% endblock %}

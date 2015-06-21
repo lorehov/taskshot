@@ -1,11 +1,16 @@
 {% extends '_base.html' %}
 
+{% block title %}Taskshot: assignment preview.{% endblock %}
+
 {% block content %}
     <div class="container">
         <h1>Assignment for task {{ assignment.task.title }}</h1>
-        <h3>{{ assignment.task.foreword }}</h3>
-        <h3>You have {{ assignment.task.time_limit }} hours on this task.</h3>
-        <div>If you ready - go on and click this <a href="{% url 'assignment_details' assignment.uid %}">link</a>!</div>
-        <div>Good luck.</div>
+        <p>Please read following information carefully.</p>
+        <h4>Time limit: {{ assignment.task.time_limit }}h.</h4>
+        <p>When you follow a link on assignment details, you'll got a {{ assignment.task.time_limit }} hours to complete an assignment.</p>
+        <h4>Assignment foreword.</h4>
+        <p>{{ assignment.task.foreword }}</p>
+        <p>If you ready - go on and click this <a href="{% url 'assignment_details' assignment.uid %}">link</a>!</p>
+        <p>Good luck.</p>
     </div>
 {% endblock %}
