@@ -3,12 +3,6 @@
 {% block content %}
   <div class="container">
     <div class="panel panel-default">
-      <div class="panel-heading">Tasks</div>
-      <div class="panel-body">
-        <p>You can add new Assignment by pressing a button "Add".</p>
-{#        <a href="{% url 'task_add' %}" class="btn btn-primary"> + Task</a>#}
-      </div>
-
       <table class="table">
         <thead>
           <tr>
@@ -16,21 +10,20 @@
             <th>Email</th>
             <th>Created</th>
             <th>Taken</th>
-            <th>Revision</th>
+            <th>Link</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {% for t in tasks %}
+          {% for a in assignments %}
             <tr>
-              <td><a href="{% url 'task_update' t.id%}">{{ t.title }}</a></td>
-              <td>{{ t.created }}</td>
-              <td><span class="badge">counter</span></td>
-              <td>{{ t.updated }}</td>
-              <td>{{ t.revision }}</td>
+              <td><a href="{% url 'task_update' a.task_id%}">{{ a.task.title }}</a></td>
+              <td>{{ a.email }}</td>
+              <td>{{ a.created }}</td>
+              <td>{{ a.taken }}</td>
+              <td><a href="{% url 'assignment_preview' a.uid %}">{% url 'assignment_preview' a.pk %}</a></td>
               <td>
-                <button class="btn btn-primary" type="button">+ Assignment</button>
-                <a href="{% url 'task_delete'  t.pk %}" class="btn btn-danger"> - Delete</a>
+                <a href="{% url 'assignment_delete' a.pk %}" class="btn btn-danger"> - Delete</a>
               </td>
             </tr>
           {% endfor %}

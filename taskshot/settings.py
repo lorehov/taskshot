@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -110,6 +111,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/Users/lorekhov/workspace/taskshot/media'
+MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 TEMPLATE_DIRS = (

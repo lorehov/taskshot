@@ -6,10 +6,10 @@ from .models import Task, Assignment
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        exclude = ('user', 'revision', 'updated', 'created')
+        exclude = ('user', 'updated', 'created')
 
 
 class AssignmentForm(ModelForm):
     class Meta:
         model = Assignment
-        exclude = ('updated', 'created')
+        exclude = ('updated', 'created', 'taken', 'task', 'uid')

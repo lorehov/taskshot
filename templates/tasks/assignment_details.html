@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Assignment for task {{ assignment.task.title }}</h1>
+        <h3>{{ assignment.task.foreword }}</h3>
+        <h3>You have {{ assignment.task.time_limit }} hours on this task.</h3>
+        <h4>{{ assignment.task.description }}</h4>
+        <h4><a href="{{ MEDIA_URL }}/{{ assignment.task.attachment }}">Вложение</a> </h4>
+    </div>
+{% endblock %}

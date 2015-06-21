@@ -1,6 +1,14 @@
+import uuid
+
 from django.core.urlresolvers import reverse
-from django.db.models import Model, CharField, TextField, DateTimeField, IntegerField, ForeignKey, EmailField
+from django.db.models import (
+    Model, CharField, TextField, DateTimeField, IntegerField, ForeignKey, EmailField, UUIDField, FileField
+)
 from django.contrib.auth.models import User
+
+
+def get_attachment_path(instance, filename):
+    return 'attachments/{}/{}.{}'.format(instance.id, filename, instance.uuid)
 
 
 class Task(Model):
@@ -10,8 +18,9 @@ class Task(Model):
     time_limit = IntegerField()  # hours
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)
-    revision = IntegerField(default=1)
     user = ForeignKey(User)
+    uuid = UUIDField(default=uuid.uuid4)
+    attachment = FileField(upload_to=get_attachment_path)
 
     def __str__(self):
         return self.title
@@ -25,11 +34,11 @@ class Task(Model):
 
 
 class Assignment(Model):
+    uid = UUIDField(db_index=True, default=uuid.uuid4, editable=False, unique=True)
     task = ForeignKey(Task)
     email = EmailField()
     description = TextField(null=True)
     created = DateTimeField(auto_now_add=True)
-    revision = IntegerField()
     taken = DateTimeField(null=True)
 
     def __str__(self):

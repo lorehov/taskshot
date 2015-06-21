@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Assignment for task {{ assignment.task.title }}</h1>
+        <h3>{{ assignment.task.foreword }}</h3>
+        <h3>You have {{ assignment.task.time_limit }} hours on this task.</h3>
+        <div>If you ready - go on and click this <a href="{% url 'assignment_details' assignment.uid %}">link</a>!</div>
+        <div>Good luck.</div>
+    </div>
+{% endblock %}
