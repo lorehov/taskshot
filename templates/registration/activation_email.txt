@@ -1,0 +1,4 @@
+Registration on taskshot
+To activate your account, please follow {{ site }}/accounts/activate/{{ activation_key }}/.
+
+Thank you!
