@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '19)+)s%!gkntko(q3&$61abx!&$@@4lhvwnylz5cl0&!3r3xbt'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'taskshot',
-        'USER': 'root',
+        'USER': '',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
@@ -91,7 +91,8 @@ DATABASES = {
         'TEST': {
             'CHARSET': 'utf8'
         }
-    }}
+    }
+}
 
 
 # Internationalization
@@ -112,7 +113,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/Users/lorekhov/workspace/taskshot/media'
+MEDIA_ROOT = ''
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
@@ -130,3 +131,8 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'taskshot@gmail.ru'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
