@@ -133,6 +133,6 @@ EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'taskshot@gmail.ru'
 
 try:
-    from local_settings import *
+    from taskshot.local_settings import *
 except ImportError:
     pass
